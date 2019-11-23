@@ -1,0 +1,289 @@
+- var link = 'letswrite-youtube-iframe-api'
+- var title = 'Youtube Iframe API 常用功能'
+- var description = 'Youtube Iframe API 常用功能'
+
+<!DOCTYPE html>
+html(lang="zh-TW")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title #{title} - Augustus - Let's Write
+
+    link(rel="canonical", href=`https://letswritetw.github.io/${link}/`)
+    meta(property="og:url", content=`https://letswritetw.github.io/${link}/`)
+
+    meta(property="fb:app_id", content="2435108729902508")
+    meta(property="og:type", content="website")
+
+    meta(property="og:site_name", content="Let's Write")
+    meta(property="og:title", content=`${title} - Augustus - Let's Write`)
+    meta(itemprop="name", content=`${title} - Augustus - Let's Write`)
+
+    meta(name="description", content=description)
+    meta(property="og:description", content=description)
+    meta(itemprop="description", content=description)
+
+    meta(itemprop="image", content=`https://letswritetw.github.io/${link}/fb.jpg`)
+    meta(property="og:image", content=`https://letswritetw.github.io/${link}/fb.jpg`)
+    meta(property="og:image:width", content="1200")
+    meta(property="og:image:height", content="630")
+    meta(property="og:image:alt", content=title)
+
+    link(rel="shortcut icon", href="https://i0.wp.com/letswrite.tw/wp-content/uploads/2019/07/cropped-letswrite512-1.jpg")
+
+    //- css
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
+
+    //- 頁面用的 style，可刪
+    style.
+      body {
+        background: #F5F5F5;
+        letter-spacing: 1px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "微軟正黑體", "Microsoft JhengHei";
+      }
+      .container {
+        margin-right: auto;
+        margin-left: auto;
+        padding: 3vh 12px;
+        max-width: 824px;
+      }
+
+    // Google Tag Manager
+    script.
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PGQ9WQT');
+  body
+
+    // Google Tag Manager (noscript)
+    noscript
+      iframe(src="https://www.googletagmanager.com/ns.html?id=GTM-PGQ9WQT", height="0", width="0", style="display:none;visibility:hidden")
+    
+    ="\n"
+
+    #app.container.section
+      .row
+        .col-12.text-center
+          h1 Youtube Iframe API Demo
+          h6.pt-2 筆記文：
+            a(href="") Let's Write
+      
+      hr.pb-3
+      
+      ="\n"
+
+      // Demo1_1：一般使用 影片的id寫在js裡
+      .row
+        .col-12.pb-2
+          h2.h4 Demo1_1：一般使用 影片的id寫在js裡
+        .col-12
+          script(src="https://gist.github.com/letswritetw/c8cb49c57fa973b07a2ef6ef764a7d52.js")
+        .col-12
+          .embed-responsive.embed-responsive-16by9
+            #player1
+      
+      ="\n"
+
+      hr.mt-5.pb-3
+
+      ="\n"
+
+      // Demo1_2：一般使用 影片的id寫在html裡
+      .row
+        .col-12.pb-2
+          h2.h4 Demo1_2：一般使用 影片的id寫在html裡
+        .col-12
+          script(src="https://gist.github.com/letswritetw/bd18d34e850325a5a5aecc813ceae2c1.js")
+          
+        .col-12
+          .embed-responsive.embed-responsive-16by9
+            // enablejsapi：必為1
+            // origin：防止惡意的第三方JS，入侵並控制youtube播放器
+            iframe#player1_2(src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1")
+      
+      ="\n"
+
+      hr.mt-5.pb-3
+
+      ="\n"
+
+      // Demo2：自製播放器
+      .row
+        .col-12.pb-2
+          h2.h4 Demo2：自製播放器
+        .col-12
+          script(src="https://gist.github.com/letswritetw/2eaaee5f71b9c6ee1a87d3495d3820a1.js")
+          
+        .col-12
+          .embed-responsive.embed-responsive-16by9
+            iframe#player2(src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1")
+      
+      ="\n"
+
+      // 播放相關按鈕
+      .row.align-items-center.pt-4
+        .col.text-center
+          .btn-group
+            button#play.btn.btn-outline-dark(type="button") 播放
+            button#pause.btn.btn-outline-dark(type="button") 暫停
+            button#stop.btn.btn-outline-dark(type="button") 停止
+            button#back.btn.btn-outline-dark(type="button") 後退10秒
+            button#forward.btn.btn-outline-dark(type="button") 前進10秒
+        
+        // 速度相關
+        .col.text-center
+          .form-group.row.align-items-center.mb-0
+            .col-2.text-right
+              label.mb-0(for="volume") 速度
+            .col-10
+              input#rate.form-control-range(type="range", min="0.25", max="2", step="0.25")
+
+      ="\n"
+
+      // 聲音相關按鈕
+      .row.pt-4
+        .col-10
+          .form-group.row.align-items-center.mb-0
+            .col-2.text-right
+              label.mb-0(for="volume") 音量
+            .col-10
+              input#volume.form-control-range(type="range", min="0", max="100", step="1")
+        .col-2
+          .custom-control.custom-switch
+            input#toggleMute.custom-control-input(type="checkbox", checked)
+            label.custom-control-label(for="toggleMute") 靜音
+      
+      ="\n"
+
+      hr.mt-5.pb-3
+
+      ="\n"
+
+      // Demo3：監聽播放狀態
+      .row
+        .col-12.pb-2
+          h2.h4 Demo3：監聽播放狀態
+        .col-12
+          script(src="https://gist.github.com/letswritetw/bdad4a919238a3f31026df8445090bfa.js")
+          
+        .col-12
+          .embed-responsive.embed-responsive-16by9
+            #player3
+      .row.pt-4
+        .col-12
+          p 影片狀態代碼：
+            span#statusCode
+          p 狀態代碼解釋
+          ul
+            li -1：unstarted 未啟動，初次載入
+            li 0：ended 結束
+            li 1：playing 播放中
+            li 2：paused 暫停
+            li 3：buffering 緩衝中
+            li 5：video cued 準備好可以播放了
+
+    ="\n"
+
+    script(src="https://www.youtube.com/iframe_api")
+    script.
+      var player1, player1_2, player2, player3;
+      function onYouTubeIframeAPIReady() {
+        //- player1：Demo1-1 一般使用 影片的id寫在js裡
+        player1 = new YT.Player('player1', {
+          height: '390', // 高度預設值為390，css會調成responsive
+          width: '640', // 寬度預設值為640，css會調成responsive
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady
+          }
+        });
+
+        //- player1_2：Demo1_2 一般使用 影片的id寫在html裡
+        //- 不必加width, height，想加可加在iframe上
+        player1_2 = new YT.Player('player1_2', {
+          events: {
+            'onReady': onPlayerReady
+          }
+        });
+
+        //- Demo2：自製播放器
+        player2 = new YT.Player('player2', {
+          events: {
+            'onReady': onPlayerReadyDemo2
+          }
+        });
+
+        //- Demo3：監聽播放狀態
+        player3 = new YT.Player('player3', {
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReadyDemo3,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+      function onPlayerReady(e) {
+        //- 為確保瀏覽器上可以自動播放，要把影片調成靜音
+        e.target.mute().playVideo();
+      }
+
+      function onPlayerReadyDemo2(e) {
+        const play = document.getElementById('play');
+        const pause = document.getElementById('pause');
+        const stop = document.getElementById('stop');
+
+        const back = document.getElementById('back');
+        const forward = document.getElementById('forward');
+
+        const rate = document.getElementById('rate');
+
+        const volume = document.getElementById('volume');
+        const mute = document.getElementById('toggleMute');
+
+        //- 播放、暫停、停止
+        play.addEventListener('click', () => {
+          mute.checked = true;
+          e.target.mute().playVideo();
+        });
+        pause.addEventListener('click', () => e.target.pauseVideo());
+        stop.addEventListener('click', () => e.target.stopVideo());
+
+        // 後退、前進10秒
+        back.addEventListener('click', () => {
+          // 先抓到目前秒數
+          let current = e.target.getCurrentTime();
+          // 後退10秒：目前秒數 - 10
+          e.target.seekTo(current - 10);
+        });
+        forward.addEventListener('click', () => {
+          // 先抓到目前秒數
+          let current = e.target.getCurrentTime();
+          // 前進10秒：目前秒數 + 10
+          e.target.seekTo(current + 10);
+        });
+
+        //- 速度
+        rate.value = e.target.getPlaybackRate(); // 先抓目前的速度
+        rate.addEventListener('input', () => e.target.setPlaybackRate(Number(rate.value)))
+
+        //- 音量
+        volume.value = e.target.getVolume(); // 先抓目前的音量
+        volume.addEventListener('input', () => e.target.setVolume(volume.value))
+
+        //- 靜音
+        //- 有聲的情況下無法自動播放，因此不執行 playVideo
+        mute.addEventListener('change', () => mute.checked ? e.target.mute().playVideo() : e.target.unMute());
+
+      }
+
+      // 影片狀態改變的callback
+      const statusCode = document.getElementById('statusCode');
+      function onPlayerReadyDemo3(e) {
+        statusCode.innerText = e.target.getPlayerState();
+      }
+      function onPlayerStateChange(e) {
+        statusCode.innerText = e.data;
+      }
